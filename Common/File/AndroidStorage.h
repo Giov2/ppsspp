@@ -31,6 +31,7 @@ bool Android_GetFileInfo(const std::string &fileUri, File::FileInfo *info);
 bool Android_FileExists(const std::string &fileUri);
 int64_t Android_GetFreeSpaceByContentUri(const std::string &uri);
 int64_t Android_GetFreeSpaceByFilePath(const std::string &filePath);
+bool Android_IsExternalStoragePreservedLegacy();
 
 std::vector<File::FileInfo> Android_ListContentUri(const std::string &uri);
 
@@ -50,6 +51,7 @@ inline bool Android_GetFileInfo(const std::string &fileUri, File::FileInfo *info
 inline bool Android_FileExists(const std::string &fileUri) { return false; }
 inline int64_t Android_GetFreeSpaceByContentUri(const std::string &uri) { return -1; }
 inline int64_t Android_GetFreeSpaceByFilePath(const std::string &filePath) { return -1; }
+inline bool Android_IsExternalStoragePreservedLegacy() { return false; }
 inline std::vector<File::FileInfo> Android_ListContentUri(const std::string &uri) {
 	return std::vector<File::FileInfo>();
 }

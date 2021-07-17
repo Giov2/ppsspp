@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -311,6 +312,16 @@ public class PpssppActivity extends NativeActivity {
 		}  catch (Exception e) {
 			Log.e(TAG, "filePathGetFreeStorageSpace exception: " + e.toString());
 			return -1;
+		}
+	}
+
+	public boolean isExternalStoragePreservedLegacy() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			// In 29 and later, we can check whether we got preserved storage legacy.
+			return Environment.isExternalStorageLegacy();
+		} else {
+			// In 28 and earlier, we won't call this - we'll still request an exception.
+			return false;
 		}
 	}
 }
